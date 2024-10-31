@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+    <meta charset="utf-8" />
+<script>
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+    }
+
+    if (/android/i.test(userAgent)) {
+        return "Android";
+    }
+
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    return "unknown";
+}</script>
+
+<script>
+function DetectAndServe(){
+    let os = getMobileOperatingSystem();
+    if (os == "Android") {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.tmob.AveaOIM"; 
+    } else if (os == "iOS") {
+        window.location.href = "https://apps.apple.com/tr/app/t%C3%BCrk-telekom-online-i-%C5%9Flemler/id496489138";
+    } else if (os == "Windows Phone") {
+        window.location.href = "https://onlineislemler.turktelekom.com.tr/";
+    } else {
+        window.location.href = "https://onlineislemler.turktelekom.com.tr/";
+    }
+}
+</script>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Revizyon msdt:dt="string">1263</mso:Revizyon>
+<mso:McOrder msdt:dt="string">100.000000000000</mso:McOrder>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+<title>Mobile Redirect</title></head>
+<body onload="DetectAndServe()">
+</body>
+</html>
